@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="/home/kazuryu/husky_ws/worlds/walk2.world"/>
+    <!-- <arg name="world_name" value="/usr/share/gazebo-11/worlds/cafe.world"/> -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+  </include>
+  <include file="$(find husky_navigation)/launch/amcl_demo.launch">
+  </include>
+
+  <node name="pub" pkg="py" type="pub.py" output="screen" />
+  <!-- <node name="lidar" pkg="py" type="lidar.py" output="screen" /> -->
+
+  <!-- obstacle_detector -->
+  <rosparam command="load" file="$(find py)/config/obstacle_detector.yaml" />
+  <node name="obstacle_extractor" pkg="obstacle_detector" type="obstacle_extractor_node">
+    <!-- <remap from="scan" to="/front_laser/scan"/> -->
+  </node>
+  <node name="obstacle_tracker" pkg="obstacle_detector" type="obstacle_tracker_node"/> 
+  <!-- OpEn -->
+  <include file="$(find open_mpc_controller)/launch/open_optimizer.launch"/>
+  <!-- rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find husky_viz)/rviz/robot.rviz" output="screen"/>
+  <!-- <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find obstacle_detector)/resources/obstacle_detector.rviz"/> -->
+</launch>

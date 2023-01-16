@@ -1,0 +1,8 @@
+prefix=/home/kazuryu/husky_ws/devel
+
+Name: py
+Description: Description of py
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/home/kazuryu/husky_ws/devel
+
+Name: gazebo-plugin-autonomous-actor
+Description: Description of gazebo-plugin-autonomous-actor
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs

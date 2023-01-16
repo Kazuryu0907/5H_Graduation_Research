@@ -1,0 +1,8 @@
+prefix=/home/kazuryu/husky_ws/install
+
+Name: open_mpc_controller
+Description: Description of open_mpc_controller
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime
