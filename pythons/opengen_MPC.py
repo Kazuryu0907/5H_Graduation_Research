@@ -176,7 +176,7 @@ ros_config = og.opengen.config.RosConfiguration()\
     .with_description("Cool ROS node.")
 build_config = og.opengen.config.BuildConfiguration()\
     .with_build_directory("optimization_engine")\
-    .with_build_mode("release")\
+    .with_build_mode("debug")\
     .with_ros(ros_config)\
     # .with_tcp_interface_config()
     # .with_ros(ros_config)\
